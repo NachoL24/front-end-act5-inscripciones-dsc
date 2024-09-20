@@ -1,0 +1,52 @@
+.container {
+  height: 10%;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 9%;
+  /*height: 100vh;*/
+  width: 100vw;
+  background-color: transparent;
+}
+
+.alumnos-info-card, .alumnos-carga-card {
+  width: 30%;
+  padding: 10px;
+  mat-card-actions{
+    margin-right: 20px;
+  }
+}
+
+.alumnos-info-card{
+  width: 40%;
+}
+
+.example-form {
+  min-width: 100px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.row-input{
+  width: 45%;
+}
+
+table {
+  width: 100%;
+}
+
+

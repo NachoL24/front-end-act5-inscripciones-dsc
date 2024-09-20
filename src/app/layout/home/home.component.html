@@ -1,0 +1,27 @@
+<mat-drawer-container class="drawer-container" [hasBackdrop]="true">
+  <mat-drawer #drawer>I'm a drawer</mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+    <!--<mat-card class="main-container">
+      <mat-card appearance="outlined" class="main-card">
+        <mat-card-content class="inner-content">
+          <button mat-flat-button>Alumnos</button>
+          <button mat-raised-button>Materias</button>
+          <button mat-stroked-button>Inscripcion</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-card>-->
+  </mat-drawer-content>
+</mat-drawer-container>

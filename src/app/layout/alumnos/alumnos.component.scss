@@ -1,0 +1,45 @@
+.container {
+  height: 10%;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.alumnos-info-card, .alumnos-carga-card {
+  width: 30%;
+  padding: 10px;
+  mat-card-actions{
+    margin-right: 20px;
+  }
+}
+
+.example-form {
+  min-width: 100px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.row-input{
+  width: 45%;
+}
+
+
+
+
