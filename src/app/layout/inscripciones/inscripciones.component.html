@@ -1,0 +1,81 @@
+<app-drawer>
+  <ng-container main-content>
+    <div class="main-section">
+      <mat-card appearance="outlined" class="alumnos-carga-card">
+        <mat-card-header>
+          <mat-card-title>Carga Cursos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <br>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Select an option</mat-label>
+              <mat-select [(ngModel)]="selectedCourse" name="course">
+                <mat-option value=""></mat-option>
+                @for (curso of courses; track curso.id){
+                  <mat-option [value]="curso.id">{{ curso.name }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Select an option</mat-label>
+              <mat-select [(ngModel)]="selectedStudent" name="student">
+                <mat-option value=""></mat-option>
+                @for (alumno of students; track alumno.id) {
+                  <mat-option [value]="alumno.id">{{ alumno.firstName }} {{ alumno.lastName }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-flat-button (click)="uploadCourse()">Cargar Curso</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card appearance="outlined" class="alumnos-info-card">
+        <mat-card-header>
+          <mat-card-title>Info Cursos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <br>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="Course Name">
+              <th mat-header-cell *matHeaderCellDef> Course Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Students">
+              <th mat-header-cell *matHeaderCellDef> Students </th>
+              <td mat-cell *matCellDef="let element">
+                @for (alumno of element.students; track alumno.id){
+                  <span>{{alumno.firstName}} {{alumno.lastName}}, </span>
+                }
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef> Delete </th>
+              <td mat-cell *matCellDef="let element">
+                    @if (element.students.length > 0) {
+                <button mat-icon-button [value]="element.id" [matMenuTriggerFor]="menu"><mat-icon>delete</mat-icon></button>
+                  <mat-menu #menu="matMenu">
+                      @for (alumno of element.students; track alumno.id){
+                        <button mat-menu-item [value]="element.id" (click)=delete(alumno.id,$event)>{{ alumno.firstName }} {{ alumno.lastName }}</button>
+                      }
+                </mat-menu>
+                    }@else{
+                <button mat-icon-button disabled><mat-icon>delete</mat-icon></button>
+
+                }
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+</app-drawer>

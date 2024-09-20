@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, signal} from '@angular/core';
 import {DrawerComponent} from "../../components/drawer/drawer.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -8,8 +8,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import { Course } from '../../models';
 import {MatIcon} from "@angular/material/icon";
+import { CursosService } from "../../services";
+import {MatMenuModule} from "@angular/material/menu";
 
-const courses: Course[] = [
+/*const courses: Course[] = [
   {
     id: 1,
     name: 'Analisis matematico',
@@ -38,7 +40,7 @@ const courses: Course[] = [
     capacity: 25,
     students: [],
   },
-];
+];*/
 
 
 @Component({
@@ -48,21 +50,86 @@ const courses: Course[] = [
     DrawerComponent,
     MatCardModule,
     MatButton,
-    FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatTableModule, MatIcon, MatIconButton
+    FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatTableModule, MatIcon, MatIconButton, MatMenuModule
   ],
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CursosComponent {
+   courses: Course[] = [];
+   course = signal<Course>({
+      name: '',
+      description: '',
+      capacity: 0,
+   });
+  dataSource = this.courses;
+
+  constructor(private cursosService: CursosService, private cdk: ChangeDetectorRef) {
+    this.cursosService.getCourses().subscribe((data: Course[]) => {
+      this.courses = data;
+      this.dataSource = [...this.courses];
+      console.log('Cursos cargados:', this.courses);
+    });
+  }
+
   displayedColumns: string[] = ['Course Name', 'Description', 'capacity', 'N° Students', 'delete'];
-  dataSource = courses;
 
   uploadCourse() {
-    alert("Cargando alumno");
+    const newCourse: Course = this.course();
+    this.cursosService.addCourse(newCourse).subscribe(course => {
+      this.cursosService.getCourses().subscribe((data: Course[]) => {
+        this.courses = data;
+        this.dataSource = [...this.courses];
+        console.log('Cursos cargados:', this.courses);
+        this.course.set({
+          name: '',
+          description: '',
+          capacity: 0,
+        });
+
+      });
+    });
   }
 
   delete(id: number) {
-    alert("Eliminando curso de id: " + id);
+    this.cursosService.deleteCourse(id).subscribe(() => {
+      this.cursosService.getCourses().subscribe((data: Course[]) => {
+        this.courses = data;
+        this.dataSource = [...this.courses];
+        console.log('Cursos cargados:', this.courses);
+        this.cdk.detectChanges();
+      });
+    });
+  }
+
+  vaciar() {
+    this.course.set({
+      name: '',
+      description: '',
+      capacity: 0,
+    })
+  }
+
+  updateCourse() {
+    const newCourse: Course = this.course();
+    this.cursosService.updateCourse(this.course().id!, newCourse).subscribe(course => {
+      this.cursosService.getCourses().subscribe((data: Course[]) => {
+        this.courses = data;
+        this.dataSource = [...this.courses];
+        console.log('Cursos cargados:', this.courses);
+        this.course.set({
+          name: '',
+          description: '',
+          capacity: 0,
+        });
+        this.cdk.detectChanges();
+      });
+    });
+  }
+
+  edit(id:number) {
+    const course = this.courses.find(course => course.id === id);
+    this.course.set(course!);
   }
 }

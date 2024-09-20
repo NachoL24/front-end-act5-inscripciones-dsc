@@ -3,7 +3,13 @@ mat-toolbar {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 30px;
-    background: #000000cc;
     position: fixed;
     z-index: 1000;
+    background-color: #004f4f;
+    color: #0dd;
+    height: 10%;
+}
+
+.title {
+  margin: 0;
 }

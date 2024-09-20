@@ -1,8 +1,10 @@
-export interface Curso {
-  id: number;
+import {Student} from "./Alumno";
+
+export interface Course {
+  id?: number;
   name: string;
   description: string;
   capacity: number;
-  symbol: string;
+  students?: Student[];
 
 }

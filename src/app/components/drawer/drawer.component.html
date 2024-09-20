@@ -5,24 +5,21 @@
     (opened)="events.push()"
     (closed)="events.push()"
   >
-  <app-user-profile></app-user-profile>
     <app-drawer-list></app-drawer-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <app-toolbar>
       <ng-container toolbar-menu-button>
-        <button style="margin: 0 10px 0 0" mat-icon-button class="menu-button" aria-label="open drawer menu" (click)="sidenav.toggle()">
+        <button style="margin: 0 10px 0 0; color: #0dd;" mat-icon-button class="menu-button" aria-label="open drawer menu" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </ng-container>
-      <ng-container toolbar-action-button>
-        <button mat-stroked-button class="logout-button" (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          Log out
-        </button>
+      <ng-container toolbar-title>
+        <span style="align-content: center;">Actividad 3 - Ignacio Lanzzavecchia </span>
       </ng-container>
     </app-toolbar>
     <ng-content select="[main-content]"></ng-content>
+
   </mat-sidenav-content>
 </mat-sidenav-container>

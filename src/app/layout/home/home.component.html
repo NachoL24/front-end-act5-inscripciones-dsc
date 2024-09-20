@@ -1,27 +1,21 @@
-<mat-drawer-container class="drawer-container" [hasBackdrop]="true">
-  <mat-drawer #drawer>I'm a drawer</mat-drawer>
-  <mat-drawer-content>
-    <mat-toolbar>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar>
-    <!--<mat-card class="main-container">
-      <mat-card appearance="outlined" class="main-card">
-        <mat-card-content class="inner-content">
-          <button mat-flat-button>Alumnos</button>
-          <button mat-raised-button>Materias</button>
-          <button mat-stroked-button>Inscripcion</button>
-        </mat-card-content>
-      </mat-card>
-    </mat-card>-->
-  </mat-drawer-content>
-</mat-drawer-container>
+<app-drawer>
+<ng-container main-content>
+  <div class="main-section">
+  <mat-card appearance="outlined" class="info-card">
+    <mat-card-header>
+      <mat-card-title>Implementación de Servicios RESTful</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>En esta actividad, se desarrollará una aplicación que implementa servicios RESTful utilizando una base de datos.
+      La aplicación permitirá gestionar Alumnos y Cursos, así como la inscripción de los alumnos en los diferentes cursos disponibles.
+      Por medio de la aplicación cliente, se hará uso de los métodos GET, POST, PUT, y DELETE para crear, modificar, visualizar
+        y eliminar tanto alumnos como cursos, y gestionar las inscripciones de manera eficiente.
+      </p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <p>¡Saludos!</p>
+    </mat-card-actions>
+  </mat-card>
+  </div>
+</ng-container>
+</app-drawer>
