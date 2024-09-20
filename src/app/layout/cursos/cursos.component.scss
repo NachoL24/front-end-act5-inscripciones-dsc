@@ -19,9 +19,13 @@
   }
 }
 
-.alumnos-info-card{
+.alumnos-info-card {
   width: auto;
+  height: 70%; // Asegúrate de que tenga una altura fija o máxima
+  overflow-y: auto; // Permite el desplazamiento vertical si el contenido es demasiado alto
+  padding: 10px;
 }
+
 
 .example-form {
   min-width: 100px;
