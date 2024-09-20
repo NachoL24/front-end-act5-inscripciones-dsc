@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/api/public'  // URL para el entorno de desarrollo
+  production: true,
+  apiUrl: 'https://back-end-act5-inscripciones-dsc.onrender.com/api/public'  // URL para el entorno de desarrollo
 };
